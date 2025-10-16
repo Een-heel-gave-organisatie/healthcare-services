@@ -1,8 +1,8 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
-    "title": "healthcare_immunization_registry_api DELETE_healthcare_{municipality}_immunization_records_{recordId} Operation Response Schema",
-    "description": "Schema representing the output of the DELETE_healthcare_{municipality}_immunization_records_{recordId} operation in healthcare_immunization_registry_api",
+    "title": "healthcare_immunization_registry_api DeleteImmunizationRecord Operation Response Schema",
+    "description": "Schema representing the output of the DeleteImmunizationRecord operation in healthcare_immunization_registry_api",
     "properties": {
         "payload": {
   "type" : "object",

@@ -19,17 +19,21 @@
 
 <!-- Generated on $timestamp -->
 
-<template xmlns="http://ws.apache.org/ns/synapse" name="GET_health">
+<template xmlns="http://ws.apache.org/ns/synapse" name="DeleteImmunizationRecord">
+        <!-- Path Parameter List -->
+            <parameter name="municipality"  description="The municipality where the record exists" />
+            <parameter name="recordId"  description="Unique identifier of the immunization record" />
         <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
         <parameter name="overwriteBody" description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <class name="org.wso2.carbon.healthcare_immunization_registry_apiconnector.RestURLBuilder">
-            <property name="operationPath" value="/health"/>
+            <property name="operationPath" value="/healthcare/{municipality}/immunization/records/{recordId}"/>
+                <property name="pathParameters" value="municipality,recordId,"/>
         </class>
             <header name="Accept" value="application/json" scope="transport" action="set"/>
         <call>
             <endpoint>
-                <http method="GET" uri-template="{uri.var.base}{+uri.var.urlPath}{+uri.var.urlQuery}">
+                <http method="DELETE" uri-template="{uri.var.base}{+uri.var.urlPath}{+uri.var.urlQuery}">
                 </http>
             </endpoint>
         </call>

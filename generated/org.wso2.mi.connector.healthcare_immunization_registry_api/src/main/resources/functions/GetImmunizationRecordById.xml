@@ -19,7 +19,7 @@
 
 <!-- Generated on $timestamp -->
 
-<template xmlns="http://ws.apache.org/ns/synapse" name="GET_healthcare_{municipality}_immunization_records_{recordId}">
+<template xmlns="http://ws.apache.org/ns/synapse" name="GetImmunizationRecordById">
         <!-- Path Parameter List -->
             <parameter name="municipality"  description="The municipality where the record exists" />
             <parameter name="recordId"  description="Unique identifier of the immunization record" />

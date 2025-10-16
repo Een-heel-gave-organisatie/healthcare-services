@@ -19,7 +19,7 @@
 
 <!-- Generated on $timestamp -->
 
-<template xmlns="http://ws.apache.org/ns/synapse" name="POST_healthcare_{municipality}_immunization_register">
+<template xmlns="http://ws.apache.org/ns/synapse" name="AddToImmunizationRegistry">
         <!-- Path Parameter List -->
             <parameter name="municipality"  description="The municipality where the child is being registered" />
         <!-- Request Body Parameter List -->

@@ -1,8 +1,8 @@
 {
     "connectorName": "healthcare_immunization_registry_api",
-    "operationName": "GET_healthcare_{municipality}_immunization_records_{recordId}",
-    "title": "GET healthcare { municipality } immunization records { record Id }",
-    "help": "Retrieves a specific immunization record by its unique identifier within a municipality",
+    "operationName": "DeleteImmunizationRecord",
+    "title": "Delete Immunization Record",
+    "help": "Deletes an immunization record by its ID for a specific municipality",
     "markdownDescription": "# Summary\n \n# Prerequisites\n\n# Input\n\n# Output\n\n# Error\n\n# Example\n\n# Notes\n\n",
     "elements": [
         {

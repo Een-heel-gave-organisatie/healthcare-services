@@ -20,25 +20,25 @@
 
 <component name="functions" type="synapse/template">
     <subComponents>
-        <component name="DELETE_healthcare_{municipality}_immunization_records_{recordId}">
-            <file>DELETE_healthcare_{municipality}_immunization_records_{recordId}.xml</file>
+        <component name="AddToImmunizationRegistry">
+            <file>AddToImmunizationRegistry.xml</file>
+            <description>Registers a newborn child into the national immunization registry for a specific municipality</description>
+        </component>
+        <component name="DeleteImmunizationRecord">
+            <file>DeleteImmunizationRecord.xml</file>
             <description>Deletes an immunization record by its ID for a specific municipality</description>
         </component>
-        <component name="GET_health">
-            <file>GET_health.xml</file>
-            <description>Returns the health status of the API</description>
-        </component>
-        <component name="GET_healthcare_{municipality}_immunization_records">
-            <file>GET_healthcare_{municipality}_immunization_records.xml</file>
-            <description>Retrieves all immunization records for children in a specific municipality</description>
-        </component>
-        <component name="GET_healthcare_{municipality}_immunization_records_{recordId}">
-            <file>GET_healthcare_{municipality}_immunization_records_{recordId}.xml</file>
+        <component name="GetImmunizationRecordById">
+            <file>GetImmunizationRecordById.xml</file>
             <description>Retrieves a specific immunization record by its unique identifier within a municipality</description>
         </component>
-        <component name="POST_healthcare_{municipality}_immunization_register">
-            <file>POST_healthcare_{municipality}_immunization_register.xml</file>
-            <description>Registers a newborn child into the national immunization registry for a specific municipality</description>
+        <component name="GetImmunizationRecords">
+            <file>GetImmunizationRecords.xml</file>
+            <description>Retrieves all immunization records for children in a specific municipality</description>
+        </component>
+        <component name="HealthCheck">
+            <file>HealthCheck.xml</file>
+            <description>Returns the health status of the API</description>
         </component>
     </subComponents>
 </component>

@@ -14,6 +14,7 @@ security:
 paths:
   /healthcare/{municipality}/immunization/register:
     post:
+      operationId: AddToImmunizationRegistry
       summary: Register a newborn child into the immunization registry
       description: Registers a newborn child into the national immunization registry for a specific municipality
       parameters:
@@ -82,6 +83,7 @@ paths:
 
   /healthcare/{municipality}/immunization/records:
     get:
+      operationId: GetImmunizationRecords
       summary: Retrieve all immunization records for a municipality
       description: Retrieves all immunization records for children in a specific municipality
       parameters:
@@ -113,6 +115,7 @@ paths:
 
   /healthcare/{municipality}/immunization/records/{recordId}:
     get:
+      operationId: GetImmunizationRecordById
       summary: Retrieve a specific immunization record by ID
       description: Retrieves a specific immunization record by its unique identifier within a municipality
       parameters:
@@ -155,6 +158,7 @@ paths:
                     type: string
                     example: "Immunization record not found"
     delete:
+      operationId: DeleteImmunizationRecord
       summary: Delete an immunization record
       description: Deletes an immunization record by its ID for a specific municipality
       parameters:
@@ -199,6 +203,7 @@ paths:
 
   /health:
     get:
+      operationId: HealthCheck
       summary: Health check endpoint
       description: Returns the health status of the API
       responses:

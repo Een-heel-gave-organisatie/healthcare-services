@@ -1,8 +1,8 @@
 {
     "connectorName": "healthcare_immunization_registry_api",
-    "operationName": "GET_healthcare_{municipality}_immunization_records",
-    "title": "GET healthcare { municipality } immunization records",
-    "help": "Retrieves all immunization records for children in a specific municipality",
+    "operationName": "AddToImmunizationRegistry",
+    "title": "Add To Immunization Registry",
+    "help": "Registers a newborn child into the national immunization registry for a specific municipality",
     "markdownDescription": "# Summary\n \n# Prerequisites\n\n# Input\n\n# Output\n\n# Error\n\n# Example\n\n# Notes\n\n",
     "elements": [
         {
@@ -38,9 +38,65 @@
                                                 "inputType": "stringOrExpression",
                                                 "defaultValue": "",
                                                 "required": "true",
-                                                "helpTip": "The municipality to search records for "
+                                                "helpTip": "The municipality where the child is being registered "
                                             }
                                         }
+                            ]
+                        }
+                    }
+                    ,{
+                        "type":"attributeGroup",
+                        "value":{
+                            "groupName": "Request Body",
+                            "elements":[
+                                        {
+                                            "type":"attribute",
+                                            "value":{
+                                                "name": "childName",
+                                                "displayName": "Child Name",
+                                                "inputType": "stringOrExpression",
+                                                "defaultValue": "",
+                                                "required": "true",
+                                                "helpTip": "Full name of the child Type: string "
+                                            }
+                                        }
+,
+                                        {
+                                            "type":"attribute",
+                                            "value":{
+                                                "name": "dateOfBirth",
+                                                "displayName": "Date Of Birth",
+                                                "inputType": "stringOrExpression",
+                                                "defaultValue": "",
+                                                "required": "true",
+                                                "helpTip": "Date of birth in YYYY-MM-DD format Type: string "
+                                            }
+                                        }
+,
+                                        {
+                                            "type":"attribute",
+                                            "value":{
+                                                "name": "birthRegistrationNumber",
+                                                "displayName": "Birth Registration Number",
+                                                "inputType": "stringOrExpression",
+                                                "defaultValue": "",
+                                                "required": "true",
+                                                "helpTip": "Official birth registration number from civil registry Type: string "
+                                            }
+                                        }
+,
+                                        {
+                                            "type":"attribute",
+                                            "value":{
+                                                "name": "vaccines",
+                                                "displayName": "Vaccines",
+                                                "inputType": "stringOrExpression",
+                                                "defaultValue": "",
+                                                "required": "false",
+                                                "helpTip": "Array of vaccines administered Type: array "
+                                            }
+                                        }
+
                             ]
                         }
                     }

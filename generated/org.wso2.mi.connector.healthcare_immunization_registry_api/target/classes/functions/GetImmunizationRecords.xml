@@ -19,7 +19,7 @@
 
 <!-- Generated on $timestamp -->
 
-<template xmlns="http://ws.apache.org/ns/synapse" name="GET_healthcare_{municipality}_immunization_records">
+<template xmlns="http://ws.apache.org/ns/synapse" name="GetImmunizationRecords">
         <!-- Path Parameter List -->
             <parameter name="municipality"  description="The municipality to search records for" />
         <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>

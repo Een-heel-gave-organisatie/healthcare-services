@@ -20,8 +20,8 @@
 <!-- Generated on $timestamp -->
 
 <connector>
+    <displayName>Healthcare Services</displayName>
     <component name="healthcare_immunization_registry_api" package="org.wso2.carbon.connector">
-        <displayName>Healthcare API</displayName>
         <dependency component="config"/>
         <dependency component="functions"/>
         <description>WSO2 healthcare_immunization_registry_api Connector Library</description>

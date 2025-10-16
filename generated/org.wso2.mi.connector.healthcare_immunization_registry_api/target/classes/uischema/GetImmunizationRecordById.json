@@ -1,8 +1,8 @@
 {
     "connectorName": "healthcare_immunization_registry_api",
-    "operationName": "GET_health",
-    "title": "GET health",
-    "help": "Returns the health status of the API",
+    "operationName": "GetImmunizationRecordById",
+    "title": "Get Immunization Record By Id",
+    "help": "Retrieves a specific immunization record by its unique identifier within a municipality",
     "markdownDescription": "# Summary\n \n# Prerequisites\n\n# Input\n\n# Output\n\n# Error\n\n# Example\n\n# Notes\n\n",
     "elements": [
         {
@@ -23,6 +23,36 @@
                           "defaultValue": "",
                           "required": "true",
                           "helpTip": "Connection to be used"
+                        }
+                    }
+                    ,{
+                        "type":"attributeGroup",
+                        "value":{
+                            "groupName": "Parameters",
+                            "elements":[
+                                        {
+                                            "type":"attribute",
+                                            "value":{
+                                                "name": "municipality",
+                                                "displayName": "Municipality",
+                                                "inputType": "stringOrExpression",
+                                                "defaultValue": "",
+                                                "required": "true",
+                                                "helpTip": "The municipality where the record exists "
+                                            }
+                                        }
+,                                        {
+                                            "type":"attribute",
+                                            "value":{
+                                                "name": "recordId",
+                                                "displayName": "Record Id",
+                                                "inputType": "stringOrExpression",
+                                                "defaultValue": "",
+                                                "required": "true",
+                                                "helpTip": "Unique identifier of the immunization record "
+                                            }
+                                        }
+                            ]
                         }
                     }
                     ,{
