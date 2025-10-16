@@ -1,0 +1,34 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "healthcare_immunization_registry_api POST_healthcare_{municipality}_immunization_register Operation Response Schema",
+    "description": "Schema representing the output of the POST_healthcare_{municipality}_immunization_register operation in healthcare_immunization_registry_api",
+    "properties": {
+        "payload": {
+            "type": "object",
+            "description": "Payload of the API response.",
+            "additionalProperties": true
+        },
+      "attributes": {
+        "type": "object",
+        "description": "Metadata about the operation.",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "description": "HTTP status code of the API response.",
+            "minimum": 100,
+            "maximum": 599
+          }
+        },
+        "required": ["statusCode"],
+        "additionalProperties": false
+      },
+      "headers": {
+        "type": "object",
+        "description": "HTTP headers of the API response.",
+        "additionalProperties": false
+      }
+    },
+    "required": ["payload", "attributes", "headers"],
+    "additionalProperties": false
+  }

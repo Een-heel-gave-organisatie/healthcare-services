@@ -1,0 +1,289 @@
+openapi: 3.0.0
+info:
+  title: Healthcare Immunization Registry API
+  description: API for managing immunization records for newborn children
+  version: 1.0.0
+  contact:
+    name: Healthcare API Support
+servers:
+  - url: http://localhost:3000
+    description: Local development server
+security:
+  - apiKey: []
+
+paths:
+  /healthcare/{municipality}/immunization/register:
+    post:
+      summary: Register a newborn child into the immunization registry
+      description: Registers a newborn child into the national immunization registry for a specific municipality
+      parameters:
+        - name: municipality
+          in: path
+          required: true
+          schema:
+            type: string
+            example: utrecht
+          description: The municipality where the child is being registered
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - childName
+                - dateOfBirth
+                - birthRegistrationNumber
+              properties:
+                childName:
+                  type: string
+                  example: "Emma van der Berg"
+                  description: Full name of the child
+                dateOfBirth:
+                  type: string
+                  format: date
+                  example: "2024-01-15"
+                  description: Date of birth in YYYY-MM-DD format
+                birthRegistrationNumber:
+                  type: string
+                  example: "BRN-UTR-2024-001234"
+                  description: Official birth registration number from civil registry
+                vaccines:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      vaccineName:
+                        type: string
+                        example: "Hepatitis B"
+                      dateAdministered:
+                        type: string
+                        format: date
+                        example: "2024-01-15"
+                      batchNumber:
+                        type: string
+                        example: "HB-2024-001"
+                  description: Array of vaccines administered
+      responses:
+        '201':
+          description: Child registered successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Child registered successfully"
+                  record:
+                    $ref: '#/components/schemas/ImmunizationRecord'
+        '400':
+          description: Bad request - invalid input data
+
+  /healthcare/{municipality}/immunization/records:
+    get:
+      summary: Retrieve all immunization records for a municipality
+      description: Retrieves all immunization records for children in a specific municipality
+      parameters:
+        - name: municipality
+          in: path
+          required: true
+          schema:
+            type: string
+            example: utrecht
+          description: The municipality to search records for
+      responses:
+        '200':
+          description: Records retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  municipality:
+                    type: string
+                    example: "utrecht"
+                  totalRecords:
+                    type: integer
+                    example: 1
+                  records:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ImmunizationRecord'
+
+  /healthcare/{municipality}/immunization/records/{recordId}:
+    get:
+      summary: Retrieve a specific immunization record by ID
+      description: Retrieves a specific immunization record by its unique identifier within a municipality
+      parameters:
+        - name: municipality
+          in: path
+          required: true
+          schema:
+            type: string
+            example: utrecht
+          description: The municipality where the record exists
+        - name: recordId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            example: "123e4567-e89b-12d3-a456-426614174000"
+          description: Unique identifier of the immunization record
+      responses:
+        '200':
+          description: Record retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  municipality:
+                    type: string
+                    example: "utrecht"
+                  record:
+                    $ref: '#/components/schemas/ImmunizationRecord'
+        '404':
+          description: Record not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Immunization record not found"
+    delete:
+      summary: Delete an immunization record
+      description: Deletes an immunization record by its ID for a specific municipality
+      parameters:
+        - name: municipality
+          in: path
+          required: true
+          schema:
+            type: string
+            example: utrecht
+          description: The municipality where the record exists
+        - name: recordId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            example: "123e4567-e89b-12d3-a456-426614174000"
+          description: Unique identifier of the immunization record
+      responses:
+        '200':
+          description: Record deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Immunization record deleted successfully"
+                  deletedRecord:
+                    $ref: '#/components/schemas/ImmunizationRecord'
+        '404':
+          description: Record not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Immunization record not found"
+
+  /health:
+    get:
+      summary: Health check endpoint
+      description: Returns the health status of the API
+      responses:
+        '200':
+          description: API is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "OK"
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: "2024-01-15T10:30:00.000Z"
+
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: api-key
+  schemas:
+    ImmunizationRecord:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: "123e4567-e89b-12d3-a456-426614174000"
+          description: Unique identifier for the record
+        municipality:
+          type: string
+          example: "utrecht"
+          description: Municipality where the child is registered
+        childName:
+          type: string
+          example: "Emma van der Berg"
+          description: Full name of the child
+        dateOfBirth:
+          type: string
+          format: date
+          example: "2024-01-15"
+          description: Child's date of birth
+        birthRegistrationNumber:
+          type: string
+          example: "BRN-UTR-2024-001234"
+          description: Official birth registration number from civil registry
+        vaccines:
+          type: array
+          items:
+            type: object
+            properties:
+              vaccineName:
+                type: string
+                example: "Hepatitis B"
+              dateAdministered:
+                type: string
+                format: date
+                example: "2024-01-15"
+              batchNumber:
+                type: string
+                example: "HB-2024-001"
+          description: Array of vaccines administered to the child
+        registrationDate:
+          type: string
+          format: date
+          example: "2024-01-15"
+          description: Date when the record was created
+
+    Vaccine:
+      type: object
+      properties:
+        vaccineName:
+          type: string
+          example: "Hepatitis B"
+          description: Name of the vaccine
+        dateAdministered:
+          type: string
+          format: date
+          example: "2024-01-15"
+          description: Date when the vaccine was administered
+        batchNumber:
+          type: string
+          example: "HB-2024-001"
+          description: Batch number of the vaccine

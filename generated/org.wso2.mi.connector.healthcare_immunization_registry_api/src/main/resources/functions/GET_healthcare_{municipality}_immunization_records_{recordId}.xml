@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ~  Copyright (c) 2025, WSO2 LLC. (https://www.wso2.com) All Rights Reserved.
+ ~
+ ~  WSO2 LLC. licenses this file to you under the Apache License,
+ ~  Version 2.0 (the "License"); you may not use this file except
+ ~  in compliance with the License.
+ ~  You may obtain a copy of the License at
+ ~
+ ~    http://www.apache.org/licenses/LICENSE-2.0
+ ~
+ ~  Unless required by applicable law or agreed to in writing,
+ ~  software distributed under the License is distributed on an
+ ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ ~  KIND, either express or implied.  See the License for the
+ ~  specific language governing permissions and limitations
+ ~  under the License.
+-->
+
+<!-- Generated on $timestamp -->
+
+<template xmlns="http://ws.apache.org/ns/synapse" name="GET_healthcare_{municipality}_immunization_records_{recordId}">
+        <!-- Path Parameter List -->
+            <parameter name="municipality"  description="The municipality where the record exists" />
+            <parameter name="recordId"  description="Unique identifier of the immunization record" />
+        <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
+        <parameter name="overwriteBody" description="Replace the Message Body in Message Context with the response of the operation."/>
+    <sequence>
+        <class name="org.wso2.carbon.healthcare_immunization_registry_apiconnector.RestURLBuilder">
+            <property name="operationPath" value="/healthcare/{municipality}/immunization/records/{recordId}"/>
+                <property name="pathParameters" value="municipality,recordId,"/>
+        </class>
+            <header name="Accept" value="application/json" scope="transport" action="set"/>
+        <call>
+            <endpoint>
+                <http method="GET" uri-template="{uri.var.base}{+uri.var.urlPath}{+uri.var.urlQuery}">
+                </http>
+            </endpoint>
+        </call>
+    </sequence>
+</template>

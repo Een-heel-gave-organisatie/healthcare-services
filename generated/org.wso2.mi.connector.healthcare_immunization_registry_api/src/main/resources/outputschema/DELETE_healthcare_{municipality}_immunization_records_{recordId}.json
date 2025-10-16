@@ -1,0 +1,98 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "healthcare_immunization_registry_api DELETE_healthcare_{municipality}_immunization_records_{recordId} Operation Response Schema",
+    "description": "Schema representing the output of the DELETE_healthcare_{municipality}_immunization_records_{recordId} operation in healthcare_immunization_registry_api",
+    "properties": {
+        "payload": {
+  "type" : "object",
+  "properties" : {
+    "message" : {
+      "type" : "string",
+      "example" : "Immunization record deleted successfully"
+    },
+    "deletedRecord" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "Unique identifier for the record",
+          "format" : "uuid",
+          "example" : "123e4567-e89b-12d3-a456-426614174000"
+        },
+        "municipality" : {
+          "type" : "string",
+          "description" : "Municipality where the child is registered",
+          "example" : "utrecht"
+        },
+        "childName" : {
+          "type" : "string",
+          "description" : "Full name of the child",
+          "example" : "Emma van der Berg"
+        },
+        "dateOfBirth" : {
+          "type" : "string",
+          "description" : "Child's date of birth",
+          "format" : "date",
+          "example" : "2024-01-15"
+        },
+        "birthRegistrationNumber" : {
+          "type" : "string",
+          "description" : "Official birth registration number from civil registry",
+          "example" : "BRN-UTR-2024-001234"
+        },
+        "vaccines" : {
+          "type" : "array",
+          "description" : "Array of vaccines administered to the child",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "vaccineName" : {
+                "type" : "string",
+                "example" : "Hepatitis B"
+              },
+              "dateAdministered" : {
+                "type" : "string",
+                "format" : "date",
+                "example" : "2024-01-15"
+              },
+              "batchNumber" : {
+                "type" : "string",
+                "example" : "HB-2024-001"
+              }
+            }
+          }
+        },
+        "registrationDate" : {
+          "type" : "string",
+          "description" : "Date when the record was created",
+          "format" : "date",
+          "example" : "2024-01-15"
+        }
+      }
+    }
+  }
+},
+      "attributes": {
+        "type": "object",
+        "description": "Metadata about the operation.",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "description": "HTTP status code of the API response.",
+            "minimum": 100,
+            "maximum": 599
+          }
+        },
+        "required": ["statusCode"],
+        "additionalProperties": false
+      },
+      "headers": {
+        "type": "object",
+        "description": "HTTP headers of the API response.",
+        "additionalProperties": false
+      }
+    },
+    "required": ["payload", "attributes", "headers"],
+    "additionalProperties": false
+  }
